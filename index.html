@@ -304,42 +304,41 @@
             opacity: 0.9;
         }
 
-        /* Your original newsletter styles are replaced by the Zoho overrides below */
-        /* Zoho form overrides */
-        .newsletter .quick_form_9_css {
-          max-width: 500px;
-          margin: 0 auto;
-          display: flex;
-          gap: 15px;
-          flex-wrap: wrap;
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
         }
-        .newsletter .quick_form_9_css .SIGNUP_FLD input[type="text"] {
-          flex: 1;
-          min-width: 250px;
-          padding: 15px 20px;
-          border: none;
-          border-radius: 50px;
-          font-size: 1rem;
-          background: rgba(255,255,255,0.9);
-          backdrop-filter: blur(10px);
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
         }
-        .newsletter .quick_form_9_css .SIGNUP_FLD input[type="submit"] {
-          padding: 15px 30px;
-          border: 2px solid rgba(255,255,255,0.3);
-          border-radius: 50px;
-          background: rgba(255,255,255,0.2);
-          color: white;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          min-width: 150px;
+
+        .newsletter-form button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
-        .newsletter .quick_form_9_css .SIGNUP_FLD input[type="submit"]:hover {
-          background: rgba(255,255,255,0.3);
-          border-color: rgba(255,255,255,0.5);
+
+        .newsletter-form button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
         }
-        /* hide Zoho heading if you prefer your own */
-        #SIGNUP_HEADING { display: none; }
 
         /* Footer */
         footer {
@@ -368,15 +367,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .newsletter-form,
-            .quick_form_9_css {
+            .newsletter-form {
                 flex-direction: column;
             }
 
             .newsletter-form input,
-            .quick_form_9_css input,
-            .newsletter-form button,
-            .quick_form_9_css input[type="submit"] {
+            .newsletter-form button {
                 min-width: 100%;
             }
 
@@ -402,7 +398,6 @@
     </header>
 
     <main>
-        <!-- Hero -->
         <section class="hero">
             <div class="container">
                 <h1>Coaching met aandacht<br>versterkt door technologie</h1>
@@ -412,7 +407,6 @@
             </div>
         </section>
 
-        <!-- Story -->
         <section class="story">
             <div class="container">
                 <div class="story-grid">
@@ -429,7 +423,6 @@
             </div>
         </section>
 
-        <!-- Features -->
         <section class="features">
             <div class="container">
                 <h2>Hoe Prism werkt</h2>
@@ -468,14 +461,11 @@
             </div>
         </section>
 
-        <!-- Privacy -->
         <section class="privacy">
             <div class="container">
                 <div class="privacy-content">
                     <h2>Jouw data, jouw regie</h2>
-                    <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px;">
-                        Prism is AVG-proof en 'EU-first' gebouwd. Coaches en coachees houden volledige regie over hun data. Privacy en vertrouwen staan centraal in alles wat we doen.
-                    </p>
+                    <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 30px;">Prism is AVG-proof en 'EU-first' gebouwd. Coaches en coachees houden volledige regie over hun data. Privacy en vertrouwen staan centraal in alles wat we doen.</p>
                     <div class="privacy-badges">
                         <div class="badge">🇪🇺 EU-First</div>
                         <div class="badge">🔒 AVG-Compliant</div>
@@ -486,104 +476,15 @@
             </div>
         </section>
 
-        <!-- Newsletter w/ Zoho snippet -->
         <section class="newsletter">
             <div class="container">
                 <h2>Prism komt eraan</h2>
                 <p>Wees de eerste die hoort wanneer Prism beschikbaar is en ontvang exclusieve updates over onze ontwikkeling.</p>
-
-                <!--Zoho Campaigns Web-Optin Form Starts Here-->
-                <div id="customForm">
-                  <div class="quick_form_9_css" name="SIGNUP_BODY">
-                    <div style="position:relative;">
-                      <div id="Zc_SignupSuccess"
-                           style="display:none; position:absolute; margin-left:4%; width:90%; background-color:white; padding:3px; border:3px solid rgb(194,225,154); margin-top:10px; word-break:break-all;">
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                          <tr>
-                            <td width="10%">
-                              <img class="successicon"
-                                   src="https://zcv2-zcmp.maillist-manage.eu/images/challangeiconenable.jpg"
-                                   align="absmiddle">
-                            </td>
-                            <td>
-                              <span id="signupSuccessMsg"
-                                    style="color: rgb(73,140,132); font-family:sans-serif; font-size:14px;">
-                                &nbsp;&nbsp;Bedankt voor je aanmelding!
-                              </span>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
-
-                    <form method="POST"
-                          id="zcampaignOptinForm"
-                          action="https://zcv2-zcmp.maillist-manage.eu/weboptin.zc"
-                          target="_zcSignup"
-                          onsubmit="zcScptlessSubmit(this)">
-
-                      <div id="errorMsgDiv"
-                           style="display:none; font-size:0.9rem; color:#e74c3c; margin-bottom:10px;">
-                        Corrigeer alsjeblieft de gemarkeerde velden.
-                      </div>
-
-                      <div class="SIGNUP_FLD">
-                        <input type="text"
-                               placeholder="Je e-mailadres"
-                               changeitem="SIGNUP_FORM_FIELD"
-                               name="CONTACT_EMAIL"
-                               id="EMBED_FORM_EMAIL_LABEL"
-                               required>
-                      </div>
-
-                      <div class="SIGNUP_FLD">
-                        <input type="submit"
-                               name="SIGNUP_SUBMIT_BUTTON"
-                               id="zcWebOptin"
-                               value="Houd me op de hoogte">
-                      </div>
-
-                      <!-- Zoho hidden fields -->
-                      <input type="hidden" id="fieldBorder" value="">
-                      <input type="hidden" id="submitType" name="submitType" value="optinCustomView">
-                      <input type="hidden" id="emailReportId" name="emailReportId" value="">
-                      <input type="hidden" id="formType" name="formType" value="QuickForm">
-                      <input type="hidden" name="zx" value="14ae7a5b7a">
-                      <input type="hidden" name="zcvers" value="2.0">
-                      <input type="hidden" name="oldListIds" id="allCheckedListIds" value="">
-                      <input type="hidden" id="mode" name="mode" value="OptinCreateView">
-                      <input type="hidden" id="zcld" name="zcld" value="136293f2999d72b5">
-                      <input type="hidden" id="zctd" name="zctd" value="136293f2999d7159">
-                      <input type="hidden" id="document_domain" value="">
-                      <input type="hidden" id="zc_Url" value="zcv2-zcmp.maillist-manage.eu">
-                      <input type="hidden" id="new_optin_response_in" value="0">
-                      <input type="hidden" id="duplicate_optin_response_in" value="0">
-                      <input type="hidden" name="zc_trackCode" id="zc_trackCode" value="ZCFORMVIEW">
-                      <input type="hidden" id="zc_formIx" name="zc_formIx"
-                             value="3zcca9ed5dad383477a3de537628e725471cf3fb6778527589df96e687894794db">
-                      <input type="hidden" id="viewFrom" value="URL_ACTION">
-                      <input type="hidden" name="scriptless" value="yes">
-                      <input type="hidden" id="zc_spmSubmit" name="zc_spmSubmit" value="ZCSPMSUBMIT">
-                    </form>
-                  </div>
-                </div>
-
-                <!-- Zoho overlay & popup -->
-                <div id="zcOptinOverLay"
-                     oncontextmenu="return false"
-                     style="display:none; text-align:center; background-color:rgba(0,0,0,0.5); z-index:100; position:fixed; width:100%; top:0; left:0; height:100%;">
-                </div>
-
-                <div id="zcOptinSuccessPopup"
-                     style="display:none; z-index:9999; width:800px; height:40%; top:84px; position:fixed; left:26%; background-color:#FFFFFF; border:1px solid #E6E6E6; box-shadow:0 1px 10px #424242; padding:35px;">
-                  <span style="position:absolute; top:-16px; right:-14px; cursor:pointer;" id="closeSuccess">
-                    <img src="https://zcv2-zcmp.maillist-manage.eu/images/videoclose.png">
-                  </span>
-                  <div id="zcOptinSuccessPanel"></div>
-                </div>
-                <!--Zoho Campaigns Web-Optin Form Ends Here-->
-
-                <p style="font-size:0.9rem; margin-top:20px; opacity:0.8;">
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Je e-mailadres" required>
+                    <button type="submit">Houd me op de hoogte</button>
+                </form>
+                <p style="font-size: 0.9rem; margin-top: 20px; opacity: 0.8;">
                     We respecteren je privacy. Geen spam, alleen belangrijke updates.
                 </p>
             </div>
@@ -597,15 +498,28 @@
     </footer>
 
     <script>
-        // Zoho’s scriptless submit helper
-        function zcScptlessSubmit(parentNode) {
-            if (parentNode.querySelector("#zc_spmSubmit")) {
-                parentNode.querySelector("#zc_spmSubmit").remove();
-            }
-            parentNode.submit();
-        }
+        // Simple form handling - you can connect this to Zoho Campaigns
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Here you'll add your Zoho Campaigns integration
+            console.log('Email submitted:', email);
+            
+            // Show success message
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = 'Bedankt!';
+            button.style.background = 'rgba(46, 204, 113, 0.3)';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = 'rgba(255, 255, 255, 0.2)';
+                this.querySelector('input').value = '';
+            }, 2000);
+        });
 
-        // Smooth scrolling for any anchor links
+        // Smooth scrolling for any future navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
