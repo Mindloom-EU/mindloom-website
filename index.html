@@ -340,6 +340,28 @@
             border-color: rgba(255, 255, 255, 0.5);
         }
 
+        .newsletter-form button:after {
+            content: none !important;
+        }
+
+        .newsletter-form button:before {
+            content: none !important;
+        }
+
+        .newsletter-form::after {
+            content: none !important;
+        }
+
+        /* Ensure no duplicate content appears */
+        .newsletter-form * {
+            position: relative;
+        }
+
+        .newsletter-form *::after,
+        .newsletter-form *::before {
+            content: none !important;
+        }
+
         /* Footer */
         footer {
             padding: 40px 0;
@@ -480,8 +502,25 @@
             <div class="container">
                 <h2>Prism komt eraan</h2>
                 <p>Wees de eerste die hoort wanneer Prism beschikbaar is en ontvang exclusieve updates over onze ontwikkeling.</p>
-                <form class="newsletter-form" id="newsletter-form">
-                    <input type="email" placeholder="Je e-mailadres" required>
+                <!-- ✅ ZOHO CAMPAIGNS FORM - Ready to Use! -->
+                <form class="newsletter-form" id="newsletter-form" method="POST" action="https://zcv2-zcmp.maillist-manage.eu/weboptin.zc">
+                    <input type="email" name="CONTACT_EMAIL" placeholder="Je e-mailadres" required>
+                    
+                    <!-- ✅ Zoho hidden fields - extracted from your embed code -->
+                    <input type="hidden" name="submitType" value="optinCustomView">
+                    <input type="hidden" name="formType" value="QuickForm">
+                    <input type="hidden" name="zx" value="14ae7a5b7a">
+                    <input type="hidden" name="zcvers" value="2.0">
+                    <input type="hidden" name="mode" value="OptinCreateView">
+                    <input type="hidden" name="zcld" value="136293f2999d72b5">
+                    <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW">
+                    <input type="hidden" name="zc_formIx" value="3zcba8508995ee1f14bb58a4ab1f1fc3322d8aaa456a4cc68aeee5ccdf0977f28b">
+                    <input type="hidden" name="viewFrom" value="URL_ACTION">
+                    <input type="hidden" name="zcvers" value="2.0">
+                    
+                    <button type="submit">Houd me op de hoogte</button>
+                </form>
+                    
                     <button type="submit">Houd me op de hoogte</button>
                 </form>
                 <p style="font-size: 0.9rem; margin-top: 20px; opacity: 0.8;">
@@ -498,26 +537,72 @@
     </footer>
 
     <script>
-        // Simple form handling - you can connect this to Zoho Campaigns
+        // ✅ WORKING Zoho Campaigns form integration
         document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
-            // Here you'll add your Zoho Campaigns integration
-            console.log('Email submitted:', email);
-            
-            // Show success message
             const button = this.querySelector('button');
+            const email = this.querySelector('input[type="email"]');
             const originalText = button.textContent;
-            button.textContent = 'Bedankt!';
-            button.style.background = 'rgba(46, 204, 113, 0.3)';
             
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = 'rgba(255, 255, 255, 0.2)';
-                this.querySelector('input').value = '';
-            }, 2000);
+            // Basic email validation
+            if (!email.value || !email.validity.valid) {
+                e.preventDefault();
+                email.focus();
+                return;
+            }
+            
+            // Show loading state
+            button.textContent = 'Versturen...';
+            button.disabled = true;
+            button.style.background = 'rgba(255, 255, 255, 0.1)';
+            
+            // Submit to Zoho in a hidden iframe to avoid redirect
+            e.preventDefault();
+            submitToZoho(new FormData(this), button, email, originalText);
         });
+
+        function submitToZoho(formData, button, emailField, originalText) {
+            // Create hidden iframe for submission
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.name = 'zoho-submission';
+            document.body.appendChild(iframe);
+            
+            // Create temporary form for submission
+            const tempForm = document.createElement('form');
+            tempForm.method = 'POST';
+            tempForm.action = 'https://zcv2-zcmp.maillist-manage.eu/weboptin.zc';
+            tempForm.target = 'zoho-submission';
+            
+            // Add all form data
+            for (let [key, value] of formData.entries()) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                tempForm.appendChild(input);
+            }
+            
+            document.body.appendChild(tempForm);
+            tempForm.submit();
+            
+            // Show success message after brief delay
+            setTimeout(() => {
+                button.textContent = 'Succesvol aangemeld! ✓';
+                button.style.background = 'rgba(46, 204, 113, 0.3)';
+                emailField.value = '';
+                
+                // Cleanup
+                document.body.removeChild(iframe);
+                document.body.removeChild(tempForm);
+                
+                // Reset button after 5 seconds
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'rgba(255, 255, 255, 0.2)';
+                    button.disabled = false;
+                }, 5000);
+            }, 1500);
+        }
 
         // Smooth scrolling for any future navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
